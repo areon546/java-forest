@@ -1,0 +1,10 @@
+# hidden folders
+.idea/*
+!.github/*
+
+bin/*
+
+
+# hidden files
+*.iml
+
