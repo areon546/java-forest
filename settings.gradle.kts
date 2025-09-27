@@ -1,1 +1,1 @@
-rootProject.name = "forest-test"
+rootProject.name = "forest-game"
