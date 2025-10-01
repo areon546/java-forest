@@ -1,13 +1,15 @@
 package forest.domain.map;
 
+import forest.locations.Event;
+
 class MapNode {
     Location loc;
 
-    String desc, event;
+    String desc;
+    Event event;
 
-    public MapNode(Location loc) {
-        this.loc=loc;
-        this.generate();
+    public MapNode(Location l) {
+        loc=l;
     }
 
     /*
@@ -15,12 +17,14 @@ class MapNode {
      *
      * Should use information about location and day here to generate random stuff every day, or set based on seed.
      */
-    private void generate() {
-        this.desc = "HI I AM AN EMPTY TILE: " + this.loc.toString() + "\n";
+    public Event generate() {
+        event = new Event(loc);
+
+        return event;
     }
 
     public String getDescription() {
-        return this.desc;
+        return event.description();
     }
 
     public Location getLoc() {

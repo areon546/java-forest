@@ -18,7 +18,7 @@ public class SaveFountain extends Area {
     }
 
     private void bathe(Explorer character, Day day, Time t) {
-        util.Output(character.Name() + " bathes until the sun goes down. ");
+        util.Output(character.name() + " bathes until the sun goes down. ");
         util.Output("TODO: Save and Load character. ");
 
     }

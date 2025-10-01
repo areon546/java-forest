@@ -1,6 +1,7 @@
 package forest.domain.map;
 
 import forest.domain.time.Time;
+import forest.locations.Event;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -26,14 +27,16 @@ public class Map {
         this.seed(seed);
     }
 
-    // Peek into the map element at the given location.
-    public String Look(Time t) {
+    // Return the description of the current location at the given time.
+    public String look(Time t) {
         return this.map.get(this.currLoc).getDescription();
     }
 
-    private void generate(Location loc) {
+    private Event generate(Location loc) {
         MapNode node = new MapNode(loc);
         this.map.put(loc, node);
+
+        return node.generate();
     }
 
     // Let the seed for the random events be set manually.
@@ -45,27 +48,27 @@ public class Map {
     // Travelling means a new map node in the given location is generated.
 
     // Travel North in Map
-    public void goNorth() {
-        this.currLoc = new Location(this.currLoc.north+1, this.currLoc.east);
-        this.generate(this.currLoc);
+    public Event goNorth() {
+        currLoc = new Location(this.currLoc.north+1, this.currLoc.east);
+        return generate(this.currLoc);
     }
 
     // Travel South in Map
-    public void goSouth() {
+    public Event goSouth() {
         this.currLoc = new Location(this.currLoc.north-1, this.currLoc.east);
-        this.generate(this.currLoc);
+        return generate(this.currLoc);
     }
 
     // Travel East in Map
-    public void goEast() {
+    public Event goEast() {
         this.currLoc = new Location(this.currLoc.north, this.currLoc.east+1);
-        this.generate(this.currLoc);
+        return generate(this.currLoc);
     }
 
     // Travel West in Map
-    public void goWest() {
+    public Event goWest() {
         this.currLoc = new Location(this.currLoc.north, this.currLoc.east-1);
-        this.generate(this.currLoc);
+        return generate(this.currLoc);
     }
 }
 

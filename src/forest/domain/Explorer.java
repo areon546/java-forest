@@ -5,8 +5,9 @@ import forest.collections.Resource;
 import forest.util.Seed;
 
 public class Explorer {
-    private String name;
-    private Materials inventory = new Materials();
+    private final String name;
+    private final Materials inventory = new Materials();
+    private float reputation = 10.0f;
 
     public Explorer(String name) {
         this.name=name;
@@ -23,7 +24,7 @@ public class Explorer {
     }
 
 
-    public String Name() {
+    public String name() {
         return this.name;
     }
 
@@ -34,5 +35,13 @@ public class Explorer {
      */
     public void add(Resource r, int quantity)  {
         inventory.get(r).adjustQuantity(quantity);
+    }
+
+    /**
+     * Adjust reputation by parameter `reputationChange` by quantity. It can go negative.
+     * @param reputationChange
+     */
+    public void adjustReputation(float reputationChange) {
+        this.reputation += reputationChange;
     }
 }

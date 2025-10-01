@@ -24,6 +24,8 @@ public class Forest extends Area {
 
         map = new Map(character.seed() ^ d.seed());
 
+        util.Output(String.format("Welcome %s, you are here to collect herbs and preserve the Wildlife. Do not Anger the Forest. ", character.name()));
+
         // Ask where to go
         char direction;
 
@@ -59,24 +61,26 @@ public class Forest extends Area {
     private void walk(char direction) {
         time.increment(30);
         time.print();
+        Event event;
 
         switch (direction) {
             case 'N':
-                map.goNorth();
+                event = map.goNorth();
+                event.enter(explorer, day, time);
                 break;
             case 'E':
-                map.goEast();
+                event = map.goEast();
+                event.enter(explorer, day, time);
                 break;
             case 'S':
-                map.goSouth();
+                event = map.goSouth();
+                event.enter(explorer, day, time);
                 break;
             case 'W':
-                map.goWest();
+                event = map.goWest();
+                event.enter(explorer, day, time);
                 break;
         }
-
-        util.Output(map.Look(time));
-
     }
 
 } // END forest

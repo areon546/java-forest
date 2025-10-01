@@ -34,6 +34,6 @@ public class Time {
     }
 
     public void print() {
-        System.out.printf("It is now: %d:%02d", hour, min, String.format("%0" + 1 + "d", min));
+        System.out.printf("It is now: %d:%02d\n", hour, min, String.format("%0" + 1 + "d", min));
     }
 }

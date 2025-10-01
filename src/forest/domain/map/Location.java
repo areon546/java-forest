@@ -1,6 +1,8 @@
 package forest.domain.map;
 
-class Location {
+import forest.util.Seed;
+
+public class Location {
     int north, east;
 
     public Location(int north, int east) {
@@ -10,6 +12,10 @@ class Location {
 
     public String toString() {
         return "X:" + this.north + " Y:" + this.east;
+    }
+
+    public long seed() {
+        return Seed.New(toString());
     }
 
 }
