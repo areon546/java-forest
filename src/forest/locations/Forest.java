@@ -7,18 +7,22 @@ They [C]ollect Herbs here, [F]ight Creatures, and [T]alk with people they meet i
 The forest is ever shifting. Upon [S]leeping it resets.
 */
 
-import forest.collections.Explorer;
-import forest.map.Map;
-import forest.time.Day;
-import forest.time.Time;
+import forest.domain.Explorer;
+import forest.domain.map.Map;
+import forest.domain.time.Day;
+import forest.domain.time.Time;
 import forest.util.util;
 
-public class Forest {
-    static Map map;
-    static Time time;
-    public static void enterForest(Explorer character, Day d, Time t) {
-        map = new Map(character.seed() ^ d.seed());
+public class Forest extends Area {
+    Map map;
+
+    @Override
+    public void enter(Explorer character, Day d, Time t) {
+        explorer=character;
+        day=d;
         time=t;
+
+        map = new Map(character.seed() ^ d.seed());
 
         // Ask where to go
         char direction;
@@ -31,11 +35,30 @@ public class Forest {
                 [S] South
                 [W] West
                 [L] Leave
-                """, util.allowed("NESWL"));} while (direction != 'L');
+                """, util.allowed("NESWL"));
+
+            walk(direction);
+
+        } while (direction != 'L');
+
+        leave();
+    }
+
+    // The character leaves the forest, it takes an hour to leave.
+    @Override
+    public void leave() {
+        time.increment(60);
+        time.print();
+
+
+        util.Output("You left the forest. It is now evening. ");
+
 
     }
 
     private void walk(char direction) {
+        time.increment(30);
+        time.print();
 
         switch (direction) {
             case 'N':

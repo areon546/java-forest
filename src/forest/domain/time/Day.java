@@ -1,4 +1,4 @@
-package forest.time;
+package forest.domain.time;
 
 public class Day {
     int day;

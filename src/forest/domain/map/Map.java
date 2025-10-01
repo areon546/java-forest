@@ -1,6 +1,6 @@
-package forest.map;
+package forest.domain.map;
 
-import forest.time.Time;
+import forest.domain.time.Time;
 
 import java.util.HashMap;
 import java.util.Random;

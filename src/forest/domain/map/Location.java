@@ -1,4 +1,4 @@
-package forest.map;
+package forest.domain.map;
 
 class Location {
     int north, east;

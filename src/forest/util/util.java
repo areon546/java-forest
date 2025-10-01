@@ -1,5 +1,7 @@
 package forest.util;
 
+import forest.collections.TownBuilding;
+
 import java.util.Scanner;
 
 public class util {
@@ -52,18 +54,36 @@ public class util {
     }
 
     public static String chars(char[] chars) {
-        String s = "[";
+        StringBuilder s = new StringBuilder("[");
 
         for (char c : chars) {
-            s += Character.toString(c) ;
+            s.append(Character.toString(c));
 
             if (c != chars[chars.length -1 ]) {
-                s+=", ";
+                s.append(", ");
             }
         }
 
         return s + "]";
     }
 
+    /**
+     *
+     * @param question  Question prepended to options.
+     * @param symbols   A parallel array to `desc`
+     * @param desc      A short description of the option.
+     * @return Returns the character inputted by the user. It asks repeatedly until they input a valid symbol.
+     */
+    public static char ask(String question, Character[] symbols, Object[] desc) {
+        StringBuilder message = new StringBuilder(question);
+        StringBuilder allowed = new StringBuilder();
+        for (int i=0; i<symbols.length; i++) {
+            char symbol = symbols[i];
+            message.append("\n[").append(symbol).append("] ").append(desc[i]);
+            allowed.append(symbol);
+        }
+
+        return util.InputChar(message.toString(), util.allowed(allowed.toString()));
+    }
 
 }

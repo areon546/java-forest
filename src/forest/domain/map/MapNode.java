@@ -1,4 +1,4 @@
-package forest.map;
+package forest.domain.map;
 
 class MapNode {
     Location loc;
@@ -16,7 +16,7 @@ class MapNode {
      * Should use information about location and day here to generate random stuff every day, or set based on seed.
      */
     private void generate() {
-        this.desc = "HI I AM AN EMPTY TILE: " + this.loc.toString();
+        this.desc = "HI I AM AN EMPTY TILE: " + this.loc.toString() + "\n";
     }
 
     public String getDescription() {

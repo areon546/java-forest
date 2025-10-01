@@ -1,4 +1,4 @@
-package forest.collections;
+package forest.domain;
 
 /*
 The Encounter class represents

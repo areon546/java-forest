@@ -1,19 +1,19 @@
 package forest;
 
-import forest.collections.Events;
-import forest.collections.Explorer;
-import forest.collections.Items;
-import forest.locations.Forest;
-import forest.locations.SaveFountain;
+import forest.collections.Buildings;
+import forest.collections.Materials;
+import forest.collections.Resource;
+import forest.collections.TownBuilding;
+import forest.domain.Explorer;
+import forest.locations.GameCycle;
 import forest.locations.Town;
-import forest.time.Day;
-import forest.time.Time;
+import forest.domain.time.Day;
+import forest.domain.time.Time;
 import forest.util.util;
-
-import static forest.util.util.InputChar;
 
 public class ForestGame {
     static Explorer character;
+    static Town town;
 
     public static void main(String[] args) {
         loadData();
@@ -22,7 +22,7 @@ public class ForestGame {
 
         getCharacter();
 
-        play();
+        start();
     }
 
     // Prints a small amount of Art to represent the game.
@@ -44,43 +44,28 @@ public class ForestGame {
         util.Output("HI " + character.toString());
     }
 
-    /* Game Cycle:
-    - Wake up
-    - GOTO Forest or Town
-    - Go to Forest
-     - Encounter Things and Gather Resources
-    - Go home after XYZ
-    - Prep at home (Weapons, Poison, ETC)
-    -
-    */
-    static void play() {
+    static void start() {
         Day day = new Day(0);
         Time time = new Time(9, 0);
+        play(day, time);
+    }
 
 
-        char c = InputChar("""
-                Do you want to go to the:
-                [T]own
-                [F]orest
-                [S]ave Fountain""", new char[] {'T', 'F', 'S'});
+    static void play(Day day, Time time) {
+        GameCycle gc = new GameCycle(town);
+        boolean test = false;
 
-
-        switch (c) {
-            case 'T':
-                Town.enterTown(character, day, time);
-                break;
-            case 'F':
-                Forest.enterForest(character, day, time);
-                break;
-            case 'S':
-                SaveFountain.bathe(character, day, time);
+        if (test) {
+            town.enter(character, day, time);
+            return;
         }
 
+        gc.enter(character, day, time);
     }
 
     static void loadData() {
-        Items.loadData();
-        Events.loadData();
-
+        Buildings b = new Buildings();
+        b.addBuilding(TownBuilding.FISH, new Materials().addMaterial(Resource.STONE, 5));
+        town = new Town(b);
     }
 }
