@@ -8,6 +8,7 @@
       4. [ ] In the forest area, there are procedurally generated tiles 
       where Events occur. 
       5. [ ] There are multiple different types of events. 
+      6. [ ] After a certain point in time, it becomes dangerous to say in the forest.
    2. [x] There exists a Town Area
       5. [ ] In the town area, there are various buildings that you can visit.
       6. [ ] Any building you visit must be constructed before use.
@@ -39,3 +40,4 @@
 your reputation with the forest changes.
    8. [ ] If you choose to do nothing, 
 8. [ ] Different events have different probabilities of occuring. 
+9. [ ] If certain conditions are met, some events are guaranteed to occur. 
